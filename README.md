@@ -11,4 +11,4 @@ Python script that will drive a car in the video game GTA IV. The goal is to hav
 Under construction
 
 ## Resources
-This project is based on the project [https://pythonprogramming.net/game-frames-open-cv-python-plays-gta-v/]"Python plays Grand Theft Auto V" by [https://github.com/Sentdex]Harrison Sentdex.
+This project is based on the project "Python plays Grand Theft Auto V"[https://pythonprogramming.net/game-frames-open-cv-python-plays-gta-v/] by Harrison Sentdex[https://github.com/Sentdex].
