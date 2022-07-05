@@ -6,6 +6,8 @@ from pyKey import pressKey, releaseKey, press, sendSequence, showKeys
 from numpy import ones, vstack
 from numpy.linalg import lstsq
 from statistics import mean
+import mss
+import mss.tools
 
 def roi(img, vertices):
     
@@ -157,19 +159,18 @@ def left():
     pressKey("a")
     releaseKey("w")
     releaseKey("d")
-    releaseKey("a")
+    #releaseKey("a")
 
 def right():
     pressKey("d")
     releaseKey("a")
     releaseKey("w")
-    releaseKey("d")
+    #releaseKey("d")
 
 def slow_ya_roll():
     releaseKey("w")
     releaseKey("a")
-    releaseKey("d")
-
+    #releaseKey("d")
 
 
 def main():
@@ -178,12 +179,14 @@ def main():
         print(i+1)
         time.sleep(1)
 
-    last_time = time.time()
+    #last_time = time.time()
+    with mss.mss() as sct:
+    # The screen part to capture
+        monitor = {"top": 65, "left": 75, "width": 800, "height": 600}
     while True:
-        #pressKey("W")
-        screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
-        print('Frame took {} seconds'.format(time.time()-last_time))
-        last_time = time.time()
+        screen =  np.array(sct.grab(monitor))
+        #print('Frame took {} seconds'.format(time.time()-last_time))
+        #last_time = time.time()
         new_screen,original_image, m1, m2 = process_img(screen)
         #cv2.imshow('window', new_screen)
         cv2.imshow('window2',cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))
