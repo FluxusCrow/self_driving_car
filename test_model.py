@@ -6,6 +6,16 @@ from pyKey import pressKey, releaseKey
 from key_inputs import straight, left, right, release_keys
 from alexnet import alexnet
 import numpy as np
+from pynput import keyboard
+
+# set up key logging. F11 = start, F12 = end
+def on_press_start(key):
+    if key == keyboard.Key.f1:
+        return False
+
+def on_press_loop(key):
+    if key == keyboard.Key.esc:
+        return False
 
 
 WIDTH = 160
@@ -55,30 +65,41 @@ def main():
     with mss.mss() as sct:
         mon1 = sct.monitors[1]
         monitor = {"top": mon1["top"] + 65, "left": mon1["left"] + 75, "width": 800, "height": 600}
-    while(True):
-        
-        if not paused:
-            # 800x600 windowed mode
-            #screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
-            screen = np.array(sct.grab(monitor))
-            print('loop took {} seconds'.format(time.time()-last_time))
-            last_time = time.time()
-            screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
-            screen = cv2.resize(screen, (160,120))
-
-            prediction = model.predict([screen.reshape(160,120,1)])[0]
-            print(prediction)
-
-            turn_thresh = .75
-            fwd_thresh = 0.70
-
-            if prediction[1] > fwd_thresh:
-                straight()
-            elif prediction[0] > turn_thresh:
-                left()
-            elif prediction[2] > turn_thresh:
-                right()
-            else:
-                straight()
+    
+    with keyboard.Listener(on_press=on_press_loop) as listener:
+        while listener.running:
+        #while(True):
+            
+            if not paused:
+                # 800x600 windowed mode
+                #screen =  np.array(ImageGrab.grab(bbox=(0,40,800,640)))
+                screen = np.array(sct.grab(monitor))
+                print('loop took {} seconds'.format(time.time()-last_time))
+                last_time = time.time()
+                screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
+                screen = cv2.resize(screen, (160,120))
+    
+                prediction = model.predict([screen.reshape(160,120,1)])[0]
+                print(prediction)
+    
+                turn_thresh = .75
+                fwd_thresh = 0.70
+    
+                if prediction[1] > fwd_thresh:
+                    straight()
+                elif prediction[0] > turn_thresh:
+                    left()
+                elif prediction[2] > turn_thresh:
+                    right()
+                else:
+                    straight()
+    
+                if cv2.waitKey(25) & 0xFF == ord('q'):
+                    cv2.destroyAllWindows()
+                    release_keys()
+                    break
+    
+with keyboard.Listener(on_press=on_press_start) as listener:
+    listener.join()
 
 main()
