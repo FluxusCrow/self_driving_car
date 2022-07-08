@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+ssd_mobilenet_v1_coco_11_06_2017
