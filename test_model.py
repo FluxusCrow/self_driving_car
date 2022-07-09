@@ -8,7 +8,7 @@ from alexnet import alexnet
 import numpy as np
 from pynput import keyboard
 
-# set up key logging. F11 = start, F12 = end
+# set up key logging. F1 = start, ESC = end
 def on_press_start(key):
     if key == keyboard.Key.f1:
         return False
@@ -98,7 +98,8 @@ def main():
                     cv2.destroyAllWindows()
                     release_keys()
                     break
-    
+
+print("The machine is ready. Press F1 to start!")
 with keyboard.Listener(on_press=on_press_start) as listener:
     listener.join()
 
