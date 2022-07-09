@@ -8,11 +8,14 @@ import tensorflow as tf
 import mss
 import mss.tools
 import cv2
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as viz_utils
+from object_detection.utils import ops as utils_ops
 
 model = keras.applications.mobilenet_v2.MobileNetV2(
     weights= "imagenet",   
     alpha = 0.35,
-    include_top=True,  # we only want to have the base, not the final dense layers 
+    include_top=True,  
     input_shape=(224, 224, 3)
 )
 
@@ -39,7 +42,16 @@ with mss.mss() as sct:
         tf.image.draw_bounding_boxes(image_batch, boxes, colors, name=None)
 
         print(keras.applications.mobilenet_v2.decode_predictions(prediction, top=5))
+        viz_utils.visualize_boxes_and_labels_on_image_array(
+          image_batch,
+          np.squeeze(boxes),
+          np.squeeze(classes).astype(np.int32),
+          np.squeeze(scores),
+          category_index,
+          use_normalized_coordinates=True,
+          line_thickness=8)
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
             break
+
 
