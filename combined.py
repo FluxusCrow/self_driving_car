@@ -189,8 +189,9 @@ def main():
                         cv2.destroyAllWindows()
                         break
 
-print("The machine is ready. Press F1 to start!")
-with keyboard.Listener(on_press=on_press_start) as listener:
-    listener.join()
-
-main()
+if __name__ == "__main__":
+    print("The machine is ready. Press F1 to start!")
+    with keyboard.Listener(on_press=on_press_start) as listener:
+        listener.join()
+    
+    main()

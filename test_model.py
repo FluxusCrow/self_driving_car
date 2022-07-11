@@ -57,9 +57,6 @@ model.load(MODEL_NAME)
 
 def main():
     last_time = time.time()
-    for i in list(range(4))[::-1]:
-        print(i+1)
-        time.sleep(1)
 
     paused = False
     with mss.mss() as sct:
@@ -99,8 +96,9 @@ def main():
                     release_keys()
                     break
 
-print("The machine is ready. Press F1 to start!")
-with keyboard.Listener(on_press=on_press_start) as listener:
-    listener.join()
-
-main()
+if __name__ == "__main__":
+    print("The machine is ready. Press F1 to start!")
+    with keyboard.Listener(on_press=on_press_start) as listener:
+        listener.join()
+    
+    main()
