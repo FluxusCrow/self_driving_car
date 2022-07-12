@@ -1,4 +1,4 @@
-from pyKey import pressKey, releaseKey, press, sendSequence, showKeys
+from pyKey import pressKey, releaseKey
 
 def straight():
     pressKey("w")

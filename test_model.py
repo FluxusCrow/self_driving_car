@@ -10,10 +10,16 @@ from pynput import keyboard
 
 # set up key logging. F1 = start, ESC = end
 def on_press_start(key):
+    """
+    Monitors the keyboard inputs and executes if F1 is pressed.
+    """
     if key == keyboard.Key.f1:
         return False
 
 def on_press_loop(key):
+    """
+    Monitors the keyboard inputs and executes if ESC is pressed.
+    """
     if key == keyboard.Key.esc:
         return False
 
