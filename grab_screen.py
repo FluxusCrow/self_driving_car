@@ -2,7 +2,7 @@
 Script for image processing. Original image is transformed into
 black&white (b&w) and edges are detected. Finally the most dominant
 edges are considered the lanes and are drawn on the original image.
-Adapted from Sentex: https://pythonprogramming.net/finding-lanes-self-driving-car-python-plays-gta-v/?completed=/hough-lines-python-plays-gta-v/
+Adapted from Sentdex: https://pythonprogramming.net/finding-lanes-self-driving-car-python-plays-gta-v/?completed=/hough-lines-python-plays-gta-v/
 """
 
 from draw_lanes import draw_lanes
@@ -43,7 +43,7 @@ def process_img(image):
 
     # more info: http://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html
     #                                     rho   theta   thresh  min length, max gap:        
-    lines = cv2.HoughLinesP(processed_img, 1, np.pi/180, 180,      20,       15)
+    lines = cv2.HoughLinesP(processed_img, 1, np.pi/180, 180, np.array([]),      20,       15)
     lane_1 = 0
     lane_2 = 0
     try:
