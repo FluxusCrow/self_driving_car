@@ -31,11 +31,14 @@ def on_press_stop(key):
     if key == keyboard.Key.esc:
         return False
 
+
+
 def main():
     """
     Defines which monitor and which part of the monitor is grabbed.
     Defines at which position the two new windows are positioned.
     """
+    paused = False
     with mss.mss() as sct:
     # If only one screen is connected:
         #monitor = {"top": 65, "left": 75, "width": 800, "height": 600}
@@ -66,10 +69,7 @@ def main():
                 left()
             else:
                 straight()
-            if cv2.waitKey(25) & 0xFF == ord('q'):
-                cv2.destroyAllWindows()
-                release_keys()
-                break
+            cv2.waitKey(1)
 
 if __name__ == "__main__":
     print("The machine is ready. Press F1 to start!")
@@ -77,4 +77,3 @@ if __name__ == "__main__":
         listener.join()
     
     main()
-

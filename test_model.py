@@ -97,10 +97,7 @@ def main():
                 else:
                     straight()
     
-                if cv2.waitKey(25) & 0xFF == ord('q'):
-                    cv2.destroyAllWindows()
-                    release_keys()
-                    break
+                cv2.waitKey(1)
 
 if __name__ == "__main__":
     print("The machine is ready. Press F1 to start!")

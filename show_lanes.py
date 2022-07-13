@@ -57,10 +57,7 @@ def main():
             new_image,original_image, m1, m2  = process_img(image)
             cv2.imshow('line extraction', new_image)
             cv2.imshow('detected lanes', original_image)
-            if cv2.waitKey(25) & 0xFF == ord('q'):
-                cv2.destroyAllWindows()
-                release_keys()
-                break
+            cv2.waitKey(1)
 
 if __name__ == "__main__":
     print("The machine is ready. Press F1 to start!")

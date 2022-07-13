@@ -132,9 +132,7 @@ def main():
                                 cv2.putText(image_np, 'WARNING!!!', (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,0,255), 3)
             
                     cv2.imshow('window',image_np)
-                    if cv2.waitKey(25) & 0xFF == ord('q'):
-                        cv2.destroyAllWindows()
-                        break
+                    cv2.waitKey(1)
 
 if __name__ == "__main__":
     print("The machine is ready. Press F1 to start!")
