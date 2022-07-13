@@ -5,7 +5,7 @@ lines of the image. The two most dominant lines are considered as
 the lanes and are shown in extra window. The script gives then a
 keyboard input (w, a or d) depending on if the middle of the image
 is between these two lines.
-Adapted from Sentex: https://pythonprogramming.net/finding-lanes-self-driving-car-python-plays-gta-v/?completed=/hough-lines-python-plays-gta-v/
+Adapted from Sentdex: https://pythonprogramming.net/finding-lanes-self-driving-car-python-plays-gta-v/?completed=/hough-lines-python-plays-gta-v/
 """
 
 import numpy as np
