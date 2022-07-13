@@ -37,7 +37,7 @@ def process_img(image):
     # edge detection
     processed_img = cv2.Canny(processed_img, threshold1 = 150, threshold2=190)
     processed_img = cv2.GaussianBlur(processed_img,(3,3),0)
-    vertices = np.array([[10,500],[10,300],[300,250],[500,250],[800,300],[800,500],
+    vertices = np.array([[0,600],[0,300],[300,200],[500,200],[800,300],[800,600],
                          ], np.int32)
     processed_img = roi(processed_img, [vertices])
 

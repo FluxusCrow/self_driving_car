@@ -16,7 +16,6 @@ def draw_lanes(img, lines, color=[0, 255, 255], thickness=3):
                 ys += [ii[1],ii[3]]
         min_y = min(ys)
         max_y = 600
-        new_lines = []
         line_dict = {}
 
         for idx,i in enumerate(lines):
@@ -34,7 +33,7 @@ def draw_lanes(img, lines, color=[0, 255, 255], thickness=3):
                 x2 = (max_y-b) / m
 
                 line_dict[idx] = [m,b,[int(x1), min_y, int(x2), max_y]]
-                new_lines.append([int(x1), min_y, int(x2), max_y])
+    
 
         final_lanes = {}
 
